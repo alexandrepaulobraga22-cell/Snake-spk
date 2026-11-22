@@ -1,20 +1,38 @@
 
-{
-  "name": "Snake SPK",
-  "short_name": "Snake SPK",
-  "description": "Jogo Snake SPK 3.0",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#080d18",
-  "theme_color": "#101a2c",
-  "icons": [
-    {
-      "src": "./icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    }
-  ]
-}
+const CACHE_NAME = "snake-spk-v2";
+
+const FILES = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./service-worker.js",
+  "./icon.svg"
+];
+
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE_NAME)
+        .map(key => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    caches.match(event.request).then(cached =>
+      cached || fetch(event.request)
+    )
+  );
+});
