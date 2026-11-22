@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#080d18"/>
+  <rect x="55" y="55" width="402" height="402" rx="75" fill="#101a2c" stroke="#20e0a0" stroke-width="12"/>
+  <path d="M130 180 H300 Q365 180 365 245 V290 Q365 355 300 355 H210 Q145 355 145 290" fill="none" stroke="#20e0a0" stroke-width="48" stroke-linecap="round"/>
+  <circle cx="300" cy="180" r="12" fill="#ffffff"/>
+  <circle cx="365" cy="245" r="12" fill="#ffffff"/>
+  <text x="256" y="430" text-anchor="middle" font-size="48" font-weight="bold" fill="#ffffff">SPK</text>
+</svg>
