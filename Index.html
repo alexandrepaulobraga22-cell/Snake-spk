@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snake SPK 3.0</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#101a2c">
+  
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#080d18;color:white;font-family:Arial,sans-serif;text-align:center}
@@ -364,6 +367,16 @@ else if(y< -20)turn(0,-1);
 },{passive:true});
 
 updateStats();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("Snake SPK pronto!"))
+      .catch(error => console.log("Erro:", error));
+  });
+}
 </script>
 </body>
   </html>
